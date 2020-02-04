@@ -1,2 +1,6 @@
-pod 'FBSDKCoreKit', '~> 4.8.0'
-pod 'FBSDKLoginKit', '~> 4.8.0'
+platform :ios, '10.3'
+
+target 'FacebookImagePicker' do
+  pod 'FBSDKCoreKit', '~> 5.15.1'
+  pod 'FBSDKLoginKit', '~> 5.15.1'
+end
