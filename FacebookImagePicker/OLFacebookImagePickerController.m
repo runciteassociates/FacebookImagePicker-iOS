@@ -41,14 +41,14 @@
 - (void)viewDidAppear:(BOOL)animated{
     if (![FBSDKAccessToken currentAccessToken] && !self.haveSeenViewDidAppear){
         self.haveSeenViewDidAppear = YES;
-        
+
         //Workaround so that we dont include FBSDKLoginKit
         NSArray *permissions = @[@"public_profile", @"user_photos"];
         Class FBSDKLoginManagerClass = NSClassFromString (@"FBSDKLoginManager");
         id login = [[FBSDKLoginManagerClass alloc] init];
-        
-        SEL aSelector = NSSelectorFromString(@"logInWithReadPermissions:fromViewController:handler:");
-        
+
+        SEL aSelector = NSSelectorFromString(@"logInWithPermissions:fromViewController:handler:");
+
         if([login respondsToSelector:aSelector]) {
             void (*imp)(id, SEL, id, id, id) = (void(*)(id,SEL,id,id, id))[login methodForSelector:aSelector];
             if( imp ) imp(login, aSelector, permissions, self, ^(id result, NSError *error) {
